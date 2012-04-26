@@ -27,6 +27,21 @@ exit
 EOF
   end
 
+  # repo:edit
+  #
+  # Starts a bash session with the repository there
+  #
+  def edit
+    run <<EOF
+set -e
+mkdir -p tmp/repo_tmp/unpack
+cd tmp/repo_tmp
+curl -o repo.tgz '#{repo_get_url}'
+cd unpack
+tar -zxf ../repo.tgz
+EOF
+  end
+
   # repo:gc
   #
   # Run a git gc --agressive on the applications repository
